@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Página Inicial{% endblock title %}
+
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <th class="rented">Alugado?</th>
+                <th class="rented">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in object_list %}
+                <tr>
+                    <td>{{ obj.vehicle_name }}</td>
+                    <td>{{ obj.get_category_display }}</td>
+                    <td>{{ obj.description }}</td>
+                    <td class="rented">
+                        {% if obj.is_rented %}
+                            <p class="is-rented"><i class="fa fa-check-circle"></i></p>
+                        {% else %}
+                            <p class="not-rented"><i class="fa fa-times-circle"></i></p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'rentacar:create' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="fleet_id" value="{{ obj.id }}">
+                            <button type="submit" class="btn btn-primary btn-block" {% if not request.user.customer or obj.is_rented %}disabled{% endif %}><i class="fa fa-car"></i> Alugar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

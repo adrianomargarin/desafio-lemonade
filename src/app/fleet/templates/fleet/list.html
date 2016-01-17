@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="form-group pull-right">
+        <a href="{% url 'fleet:create' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Cadastrar novo veículo</a>
+    </div>
+    <div class="clearfix"></div>
+    {% if object_list %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Alugado?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td><a href="{% url 'fleet:update' obj.id %}">{{ obj.name }}</a></td>
+                        <td>{{ obj.get_category_display }}</td>
+                        <td>{{ obj.description }}</td>
+                        <td class="rented">
+                            {% if obj.is_rented %}
+                                <p class="is-rented"><i class="fa fa-check-circle"></i></p>
+                            {% else %}
+                                <p class="not-rented"><i class="fa fa-times-circle"></i></p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <p>Nenhum registro encontrado.</p>
+        </div>
+    {% endif %}
+{% endblock content %}

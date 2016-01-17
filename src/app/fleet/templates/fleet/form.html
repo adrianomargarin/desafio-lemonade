@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {% include "form_error.html" %}
+        <div class="col-md-6 col-md-offset-3 login-register">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Novo veículo</strong></div>
+                <div class="panel-body">
+                    <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+                        <label class="control-label">{{ form.name.label }} {% if form.name.field.required %}*{% endif %}</label>
+                        {% render_field form.name class="form-control" %}
+                        {% include "field_error.html" with field=form.name %}
+                    </div>
+                    <div class="form-group {% if form.category.errors %}has-error{% endif %}">
+                        <label class="control-label">{{ form.category.label }}{% if form.category.field.required %}*{% endif %}</label>
+                        {% render_field form.category class="form-control" %}
+                        {% include "field_error.html" with field=form.category %}
+                    </div>
+                    <div class="form-group {% if form.description.errors %}has-error{% endif %}">
+                        <label class="control-label">{{ form.description.label }}{% if form.description.field.required %}*{% endif %}</label>
+                        {% render_field form.description class="form-control" %}
+                        {% include "field_error.html" with field=form.description %}
+                    </div>
+                    <a href="{% url 'fleet:list' %}" class="btn btn-default"><i class="fa fa-reply"></i> Voltar</a  >
+                    <button type="reset" class="btn btn-default"><i class="fa fa-eraser"></i> Limpar</button  >
+                    <button type="submit" class="btn btn-success pull-right"><i class="fa fa-check"></i> Salvar</button>
+                    <div class="clearfix"></div>
+                    <p class="text-muted pull-right">* Campos Obrigatórios</p>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}

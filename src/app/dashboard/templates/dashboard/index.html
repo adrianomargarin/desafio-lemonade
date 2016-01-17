@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+
+{% block title %}Administração{% endblock title %}
+
+{% block content %}
+    <p class="text-center">Bem-vindo, {{ request.user.get_full_name|default:request.user.username }}</p>
+{% endblock content %}

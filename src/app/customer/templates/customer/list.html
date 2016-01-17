@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if object_list %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Usuário</th>
+                    <th>E-mail</th>
+                    <th>CPF</th>
+                    <th>CNH</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td><a href="#">{{ obj.get_full_name }}</a></td>
+                        <td>{{ obj.username }}</td>
+                        <td>{{ obj.email }}</td>
+                        <td>{{ obj.format_cpf }}</td>
+                        <td>{{ obj.cnh }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <p>Nenhum registro encontrado.</p>
+        </div>
+    {% endif %}
+{% endblock content %}

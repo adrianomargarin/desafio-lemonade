@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Registro{% endblock title %}
+
+{% block content %}
+    <div class="col-md-6 col-md-offset-3 login-register">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>Registrar-se</strong></div>
+            <div class="panel-body">
+                <form method="POST" id="form-customer">
+                    {% csrf_token %}
+                    {% include "form_error.html" %}
+                    <div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
+                        <label for="{{ form.first_name.id_for_label }}">Nome{% if form.first_name.field.required %}*{% endif %}</label>
+                        {% render_field form.first_name class="form-control" %}
+                        {% include "field_error.html" with field=form.first_name %}
+                    </div>
+                    <div class="form-group {% if form.last_name.errors %}has-error{% endif %}">
+                        <label for="{{ form.last_name.id_for_label }}">Sobrenome{% if form.last_name.field.required %}*{% endif %}</label>
+                        {% render_field form.last_name class="form-control" %}
+                        {% include "field_error.html" with field=form.last_name %}
+                    </div>
+                    <div class="form-group {% if form.cpf.errors %}has-error{% endif %}">
+                        <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}{% if form.cpf.field.required %}*{% endif %}</label>
+                        {% render_field form.cpf class="form-control" %}
+                        {% include "field_error.html" with field=form.cpf %}
+                    </div>
+                    <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                        <label for="{{ form.username.id_for_label }}">Usuário{% if form.username.field.required %}*{% endif %}</label>
+                        {% render_field form.username class="form-control" %}
+                        {% include "field_error.html" with field=form.username %}
+                    </div>
+                    <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                        <label for="{{ form.email.id_for_label }}">Email{% if form.email.field.required %}*{% endif %}</label>
+                        {% render_field form.email class="form-control" %}
+                        {% include "field_error.html" with field=form.email %}
+                    </div>
+                    <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                        <label for="{{ form.password.id_for_label }}">Senha{% if form.password.field.required %}*{% endif %}</label>
+                        {% render_field form.password class="form-control" %}
+                        {% include "field_error.html" with field=form.password %}
+                    </div>
+                    <div class="form-group {% if form.password2.errors %}has-error{% endif %}">
+                        <label for="{{ form.password2.id_for_label }}">Repita a Senha{% if form.password2.field.required %}*{% endif %}</label>
+                        {% render_field form.password2 class="form-control" %}
+                        {% include "field_error.html" with field=form.password2 %}
+                    </div>
+                    <div class="form-group cnh-types {% if form.cnh_type.errors %}has-error{% endif %}">
+                        <p><strong>Quais as categorias da sua CNH?{% if form.cnh_type.field.required %}*{% endif %}</strong></p>
+                        <label class="checkbox-label" for="{{ form.cnh_type.id_for_label }}">
+                            {% render_field form.cnh_type %}
+                        </label>
+                        {% include "field_error.html" with field=form.cnh_type %}
+                    </div>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-eraser"></i> Limpar</button  >
+                    <button type="submit" class="btn btn-success pull-right"><i class="fa fa-check"></i> Registrar</button>
+                    <div class="clearfix"></div>
+                    <p class="text-muted pull-right">* Campos Obrigatórios</p>
+                    <p>Já possui conta? <a href="{% url 'login' %}"> Acesse agora.</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

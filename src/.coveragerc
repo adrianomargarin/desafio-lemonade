@@ -1,0 +1,20 @@
+[run]
+#ignore all settings
+omit =
+    *settings*
+    *tests/*
+    *tests.py*
+    *migrations/*
+    *urls*
+    *tornado_server*
+    *admin*
+    *__init__*
+    *admin*
+    *error_processing*
+    *server*
+    *logger*
+    *wsgi*
+    *manage*
+
+[report]
+precision = 2

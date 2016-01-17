@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Página Inicial{% endblock title %}
+
+{% block content %}
+    {% if object_list %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Km Rodado</th>
+                    <th class="rented-give-back">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>{{ obj.vehicle.vehicle_name }}</td>
+                        <td>{{ obj.vehicle.get_category_display }}</td>
+                        <td>{{ obj.vehicle.description }}</td>
+                        <td>{{ obj.mileage_rotated|default:"" }}</td>
+                        <td>
+                            {% if not obj.is_back %}
+                                <form method="POST" action="{% url 'rentacar:give-back' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="rent_id" value="{{ obj.id }}">
+                                    <div class="input-group">
+                                        <input type="number" step="0.10" name="mileage_rotated" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-car"></i> Devolver</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            {% else %}
+                                Veículo já devolvido.
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            Nenhum aluguel encontrado.
+        </div>
+    {% endif %}
+{% endblock content %}

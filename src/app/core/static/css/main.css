@@ -1,0 +1,54 @@
+.cnh-types ul{
+    padding-left: 0;
+    margin-top: 5px;
+}
+    .cnh-types ul li{
+        list-style: none;
+        display: inline;
+        margin-right: 10px;
+    }
+
+.has-error .error-field,
+.has-error.cnh-types strong,
+.has-error label{
+    color: #a94442;
+}
+
+.footer-p{
+    margin-top: 15px;
+}
+
+section.content{
+    margin-top: 60px;
+}
+
+#forbidden .col-md-4{
+    background-color: #fff;
+    margin-top: 10%;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#forbidden span.glyphicon{
+    font-size: 100px;
+}
+
+th.rented{
+    width: 80px;
+}
+
+th.rented-give-back{
+    width: 250px;
+}
+
+.is-rented {
+    color: rgb(16, 129, 34);
+}
+
+.not-rented {
+    color: rgb(216, 22, 45);
+}
+
+.rented{
+    text-align: center;
+}
