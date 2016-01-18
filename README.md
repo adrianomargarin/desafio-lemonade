@@ -67,9 +67,6 @@ user_pass = b64encode(username + ':' + 'senha').decode('ascii')
 Registro de cliente (Sem autenticação)
 ======================================
 
-Endpoint
-********
-
 ```
 POST /api/v1/cliente
 ```
@@ -91,9 +88,6 @@ Exemplo
 
 Edição completa de um cliente (Com autenticação)
 ================================================
-
-Endpoint 
-********
 
 ```
 PUT /api/v1/cliente/:id-customer
@@ -117,9 +111,6 @@ Exemplo
 Edição parcial de um cliente (Com autenticação)
 ===============================================
 
-Endpoint 
-********
-
 ```
 PATCH /api/v1/cliente/:id-customer
 ```
@@ -136,9 +127,6 @@ Exemplo
 
 Consultar dados de um cliente (Com autenticação)
 ================================================
-
-Endpoint 
-********
 
 ```
 GET /api/v1/cliente/:id-customer
@@ -162,9 +150,6 @@ Resposta
 Excluir um cliente (Com autenticação)
 =====================================
 
-Endpoint
-********
-
 ```
 DELETE /api/v1/cliente/:id-customer
 ```
@@ -178,13 +163,64 @@ Resposta
 }
 ```
 
+## Aluguel e devolução
+
+Alugar (Com autenticação)
+=========================
+
+```
+POST /api/v1/alugar
+```
+
+Exemplo
+=======
+
+```
+{
+    "vehicle": 2
+}
+```
+
+Devolver (Com autenticação)
+===========================
+
+```
+POST /api/v1/devolver
+```
+
+Exemplo
+=======
+
+```
+{
+    "vehicle": 2,
+    "mileage_rotated": 500.00
+}
+```
+
+Consultar aluguéis (Com autenticação)
+=====================================
+
+```
+GET /api/v1/alugueis/:id-rent
+```
+
+Resposta
+********
+
+```
+{
+    "id": 1,
+    "vehicle": 2,
+    "customer": 3,
+    "mileage_rotated": "500.00"
+}
+```
+
 # APIs Admin
 
 Cadastrar veículo na frota (Com autenticação)
 =============================================
-
-Endpoint
-********
 
 ```
 POST /api/v1/frota
@@ -204,9 +240,6 @@ Exemplo
 Editação completa de um veículo da frota (Com autenticação)
 ===========================================================
 
-Endpoint
-********
-
 ```
 PUT /api/v1/frota/:id-vehicle
 ```
@@ -225,9 +258,6 @@ Exemplo
 Editação parcial de um veículo da frota (Com autenticação)
 ==========================================================
 
-Endpoint
-********
-
 ```
 PATCH /api/v1/frota/:id-vehicle
 ```
@@ -243,9 +273,6 @@ Exemplo
 
 Consultar um veículo da frota (Com autenticação)
 ================================================
-
-Endpoint
-********
 
 ```
 GET /api/v1/frota/:id-vehicle
@@ -266,9 +293,6 @@ Resposta
 
 Excluir um veículo da frota (Com autenticação)
 ==============================================
-
-Endpoint
-********
 
 ```
 DELETE /api/v1/frota/:id-vehicle
