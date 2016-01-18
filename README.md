@@ -163,8 +163,6 @@ Resposta
 }
 ```
 
-## Aluguel e devolução
-
 Alugar (Com autenticação)
 =========================
 
@@ -173,7 +171,7 @@ POST /api/v1/alugar
 ```
 
 Exemplo
-=======
+*******
 
 ```
 {
@@ -189,7 +187,7 @@ POST /api/v1/devolver
 ```
 
 Exemplo
-=======
+*******
 
 ```
 {
