@@ -130,23 +130,3 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100
 }
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES':(
-#         'app.api.auth.AccountTokenAuthenticate',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES':(
-#         'app.api.auth.IsAccountAuthenticated',
-#     ),
-#     'DEFAULT_RENDERER_CLASSES':(
-#         'rest_framework.renderers.UnicodeJSONRenderer',
-#     ),
-#     'DEFAULT_PARSER_CLASSES':(
-#         'rest_framework.parsers.JSONParser',
-#     ),
-#     'DEFAULT_FILTER_BACKENDS':(
-#         'rest_framework.filters.DjangoFilterBackend',
-#     ),
-#     'DEFAULT_PAGINATION_SERIALIZER_CLASS':
-#         'app.api.serializers.EmitterPaginationSerializer',
-#     'PAGINATE_BY': 10,
-# }
