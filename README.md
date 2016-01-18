@@ -183,7 +183,7 @@ Devolver (Com autenticação)
 ===========================
 
 ```
-POST /api/v1/devolver
+PATCH /api/v1/devolver/:id-rent
 ```
 
 Exemplo
