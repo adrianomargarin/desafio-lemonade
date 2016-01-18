@@ -25,9 +25,6 @@ class Helper(object):
         self.headers = {'HTTP_AUTHORIZATION': 'Basic %s' % user_pass}
 
         self.factory = APIRequestFactory()
-        # self.request = self.factory.get(reverse('api-v1:emitter-list'),
-        #     **self.headers)
-
         self.vehicle = Fleet.objects.create(vehicle_name='Palio',
             category='car')
 

@@ -22,13 +22,18 @@ class CustomerView(viewsets.ViewSet):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
+            try:
+                cnh_type = request.data.getlist('cnh_type')
+            except AttributeError:
+                cnh_type = request.data.get('cnh_type')
+
             obj = Customer.objects.create_user(
                 first_name=serializer.data.get('first_name'),
                 last_name=serializer.data.get('last_name'),
                 username=serializer.data.get('username'),
                 email=serializer.data.get('email'),
                 cpf=serializer.data.get('cpf'),
-                cnh_type=request.data.getlist('cnh_type'),
+                cnh_type=cnh_type,
                 password=serializer.data.get('password'),
             )
 
@@ -47,7 +52,8 @@ class CustomerView(viewsets.ViewSet):
             obj.username = request.data.get('username') or serializer.data.get('username')
             obj.email = request.data.get('email') or serializer.data.get('email')
             obj.cpf = request.data.get('cpf') or serializer.data.get('cpf')
-            obj.cnh_type = list(request.data.get('cnh_type')) or list(serializer.data.get('cnh_type'))
+            cnh_type = request.data.get('cnh_type') or serializer.data.get('cnh_type')
+            obj.cnh_type = list(cnh_type)
 
             if request.data.get('password'):
                 obj.set_password(request.data.get('password'))
